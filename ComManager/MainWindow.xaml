@@ -1,0 +1,52 @@
+﻿<Window x:Class="ComManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComManager"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="COMPORT"></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="BAUDRATE"></TextBlock>
+            
+            <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding AvailablePorts}" SelectedItem="{Binding SelectedPort}"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding BaudRates}" SelectedItem="{Binding SelectedBaudRate}"/>
+
+            
+        </Grid>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <Button Content="Connect" Command="{Binding ConnectCommand}" MaxHeight="30" VerticalAlignment="Top"/>
+            <Button Content="Disconnect" Command="{Binding DisconnectCommand}" MaxHeight="30"/>
+            <Button Content="Send data" Command="{Binding SendDataCommand}" MaxHeight="30"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.RowSpan="2" Orientation="Vertical">
+            <TextBox MinLines="10" Text="{Binding DataOut, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </StackPanel>
+    </Grid>
+</Window>
